@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">WeatherActivity</string>
+
+    <string name="enterCityName">輸入城市名稱</string>
+
+    <string name="addCity">新增城市</string>
+    <string name="addCityInfo">新增你想要查看的城市天氣</string>
+
+    <!--Toast-->
+    <string name="addOK">新增成功</string>
+    <string name="noInput">還沒輸入任何資料喔！</string>
+    <string name="cityNotFound">沒有這個城市的資料喔</string>
+    <string name="noResponse">伺服器無回應，請稍候再試</string>
+
+    <!--氣象卡-->
+    <string name="rightNow">現在：</string>
+    <string name="maxTemp">最高溫：</string>
+    <string name="minTemp">最低溫：</string>
+    <string name="shortdescription">天氣概況：</string>
+
+    <!--資訊卡-->
+    <string name="humidity">濕度</string>
+    <string name="speed">風速</string>
+    <string name="cloud">雲霧</string>
+    <string name="pressure">氣壓</string>
+</resources>
