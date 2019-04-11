@@ -25,9 +25,9 @@ public class IconProvider {
 //            case "Clear":
 //                weatherIcon = R.mipmap.ic_clear;
 //                break;
-//            case "Clouds":
-//                weatherIcon = R.mipmap.ic_cloudy;
-//                break;
+            case "Clouds":
+                weatherIcon = R.drawable.icons_cloudy;
+                break;
 //            case "Extreme":
 //                weatherIcon = R.mipmap.ic_extreme;
 //                break;

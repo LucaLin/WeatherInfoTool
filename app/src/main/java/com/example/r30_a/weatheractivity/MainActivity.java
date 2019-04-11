@@ -34,6 +34,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//參考來源：https://github.com/martinrzg/android-weather-app
+
 public class MainActivity extends AppCompatActivity {
 
     private List<CityWeather> cityWeatherList;
@@ -62,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.ry_weatherCards);
         linearLayoutManager = new LinearLayoutManager(this);
 
+        //取得天氣api服務
         service = API.getApi().create(WeatherService.class);
-
+        //綁定清單介面
         adapter = new MyWeatherAdapter(cityWeatherList, R.layout.layout_weather_card, this, new MyWeatherAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(CityWeather cityWeather, int position, View view) {
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         }
         swipeRefreshLayout.setRefreshing(false);
     }
-
+    //下滑更新
     public void updateCity(String cityName, final int index){
         Call<CityWeather> cityWeather = service.getWeatherCity(cityName, API.KEY, "metric",6);
         cityWeather.enqueue(new Callback<CityWeather>() {
@@ -175,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    //加入氣象卡片
     public void addCity(String cityname) {
 
         Call<CityWeather> weatherCall = service.getWeatherCity(cityname,API.KEY,"metric",6);
@@ -193,11 +196,9 @@ public class MainActivity extends AppCompatActivity {
                     toast.setText(R.string.cityNotFound);toast.show();
                 }
             }
-
             @Override
             public void onFailure(Call<CityWeather> call, Throwable t) {
                 toast.setText(R.string.noResponse);toast.show();
-
             }
         });
     }

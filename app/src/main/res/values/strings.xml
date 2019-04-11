@@ -21,6 +21,6 @@
     <!--資訊卡-->
     <string name="humidity">濕度</string>
     <string name="speed">風速</string>
-    <string name="cloud">雲霧</string>
+    <string name="cloud">雲層</string>
     <string name="pressure">氣壓</string>
 </resources>
