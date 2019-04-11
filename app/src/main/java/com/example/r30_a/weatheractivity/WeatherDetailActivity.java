@@ -29,16 +29,13 @@ public class WeatherDetailActivity extends AppCompatActivity {
     private TextView txvMinTemp1, txvMinTemp2, txvMinTemp3, txvMinTemp4, txvMinTemp5;
 
     //    氣象細節資料
-    private TextView txvhumidity, txvhumidityData;
-    private TextView txvSpeed, txvSpeedData;
-    private TextView txvCloud, txvCloudData;
-    private TextView txvPressure, txvPressureData;
-    private ImageView img_humidity, img_speed, img_cloud, img_pressure;
+    private TextView txvhumidityData;
+    private TextView txvSpeedData;
+    private TextView txvCloudData;
+    private TextView txvPressureData;
 
     private CityWeather cityWeather;
-    String[] namesOfDays = {
-            "SAT", "SUN", "MON", "TUE", "WED", "THU", "FRI",
-    };
+    String[] namesOfDays = {"SAT", "SUN", "MON", "TUE", "WED", "THU", "FRI",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +43,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather_detail);
 
         initView();
-
+        //取得前一頁的詳細資料
         Bundle bundle = getIntent().getExtras();
         if (!bundle.isEmpty()) {
             cityWeather = (CityWeather) bundle.getSerializable("city");
@@ -61,7 +58,6 @@ public class WeatherDetailActivity extends AppCompatActivity {
         txvCard_maxTemp.setText((int) cityWeather.getWeatherData().get(0).getTemp().getMax() + "°c");
         txvCard_minTemp.setText((int) cityWeather.getWeatherData().get(0).getTemp().getMin() + "°c");
 
-
         txvhumidityData.setText((int) cityWeather.getWeatherData().get(0).getHumidity() + "%");
         txvSpeedData.setText((int) cityWeather.getWeatherData().get(0).getSpeed() + " m/s");
         txvCloudData.setText((int) cityWeather.getWeatherData().get(0).getClouds() + "%");
@@ -72,7 +68,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
 
         Date date = new Date();
         Calendar calendar = new GregorianCalendar();
-
+        //設置一周間氣象資訊
         for (int i = 1; i < cityWeather.getWeatherData().size(); i++) {
             calendar.setTime(date);
             String day = namesOfDays[(calendar.get(Calendar.DAY_OF_WEEK) + i) % 7];
@@ -81,57 +77,31 @@ public class WeatherDetailActivity extends AppCompatActivity {
                 case 0:
                     break;
                 case 1:
-//                    txvDay1.setText(day);
-//                    weeklyDescription = cityWeather.getWeatherData().get(i).getWeatherDetails().get(i).getShortDescription();
-//                    img_icon1.setBackgroundResource(IconProvider.getImageIcon(weeklyDescription));
-//                    txvMinTemp1.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMax() + "°C");
-//                    txvMinTemp1.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMin() + "°C");
                     setDailyInfo(1,txvDay1,day,img_icon1,txvMaxTemp1,txvMinTemp1);
                     break;
                 case 2:
-//                    txvDay2.setText(day);
-//                    weeklyDescription = cityWeather.getWeatherData().get(i).getWeatherDetails().get(i).getShortDescription();
-//                    img_icon2.setBackgroundResource(IconProvider.getImageIcon(weeklyDescription));
-//                    txvMinTemp2.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMax() + "°C");
-//                    txvMinTemp2.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMin() + "°C");
                     setDailyInfo(2,txvDay2,day,img_icon2,txvMaxTemp2,txvMinTemp2);
                     break;
                 case 3:
-//                    txvDay3.setText(day);
-//                    weeklyDescription = cityWeather.getWeatherData().get(i).getWeatherDetails().get(i).getShortDescription();
-//                    img_icon3.setBackgroundResource(IconProvider.getImageIcon(weeklyDescription));
-//                    txvMinTemp3.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMax() + "°C");
-//                    txvMinTemp3.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMin() + "°C");
                     setDailyInfo(3,txvDay3,day,img_icon3,txvMaxTemp3,txvMinTemp3);
                     break;
                 case 4:
-//                    txvDay4.setText(day);
-//                    weeklyDescription = cityWeather.getWeatherData().get(i).getWeatherDetails().get(i).getShortDescription();
-//                    img_icon4.setBackgroundResource(IconProvider.getImageIcon(weeklyDescription));
-//                    txvMinTemp4.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMax() + "°C");
-//                    txvMinTemp4.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMin() + "°C");
                     setDailyInfo(4,txvDay4,day,img_icon4,txvMaxTemp4,txvMinTemp4);
                     break;
                 case 5:
-//                    txvDay5.setText(day);
-//                    weeklyDescription = cityWeather.getWeatherData().get(i).getWeatherDetails().get(i).getShortDescription();
-//                    img_icon5.setBackgroundResource(IconProvider.getImageIcon(weeklyDescription));
-//                    txvMinTemp5.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMax() + "°C");
-//                    txvMinTemp5.setText((int) cityWeather.getWeatherData().get(i).getTemp().getMin() + "°C");
                     setDailyInfo(5,txvDay5,day,img_icon5,txvMaxTemp5,txvMinTemp5);
                     break;
-
             }
         }
 
     }
+
     public void setDailyInfo(int index, TextView txvday, String day, ImageView imgIcon, TextView txvMaxTemp, TextView txvMinTemp){
         txvday.setText(day);
         String weeklyDescription = cityWeather.getWeatherData().get(index).getWeatherDetails().get(0).getShortDescription();
         imgIcon.setBackgroundResource(IconProvider.getImageIcon(weeklyDescription));
         txvMaxTemp.setText((int) cityWeather.getWeatherData().get(index).getTemp().getMax() + "°C");
         txvMinTemp.setText((int) cityWeather.getWeatherData().get(index).getTemp().getMin() + "°C");
-
     }
 
     private void initView() {
@@ -166,20 +136,10 @@ public class WeatherDetailActivity extends AppCompatActivity {
         txvMinTemp4 = (TextView) findViewById(R.id.txvMinTemp4);
         txvMinTemp5 = (TextView) findViewById(R.id.txvMinTemp5);
 
-//        txvhumidity = (TextView)findViewById(R.id.txvHumidity);
         txvhumidityData = (TextView) findViewById(R.id.txvHumidityData);
-//        txvSpeed = (TextView)findViewById(R.id.txvSpeed);
         txvSpeedData = (TextView) findViewById(R.id.txvSpeedData);
-//        txvCloud = (TextView)findViewById(R.id.txvCloud);
         txvCloudData = (TextView) findViewById(R.id.txvCloudData);
-//        txvPressure = (TextView)findViewById(R.id.txvPressure);
         txvPressureData = (TextView) findViewById(R.id.txvPressureData);
-
-        img_humidity = (ImageView) findViewById(R.id.img_humidity);
-        img_speed = (ImageView) findViewById(R.id.img_Speed);
-        img_cloud = (ImageView) findViewById(R.id.img_Cloud);
-        img_pressure = (ImageView) findViewById(R.id.img_Pressure);
-
 
     }
 }

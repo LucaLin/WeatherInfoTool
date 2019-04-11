@@ -106,11 +106,8 @@ public class MyWeatherAdapter extends RecyclerView.Adapter<MyWeatherAdapter.MyVi
             });
         }
 
-
-
     }
-
-
+    
     public interface OnItemClickListener {
         void onItemClick(CityWeather cityWeather, int position, View view);
     }
