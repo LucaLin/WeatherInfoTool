@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:fitsSystemWindows="true"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="20dp"
+    android:transitionName="weatherCardTransition">
 
 
     <RelativeLayout

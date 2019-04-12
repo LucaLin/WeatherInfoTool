@@ -58,12 +58,13 @@ public class MyWeatherAdapter extends RecyclerView.Adapter<MyWeatherAdapter.MyVi
         notifyItemInserted(position);
     }
 
-    @Override
+    @Override//使用自訂的onSwipeListener通知滑動的該卡片做刪除動作
     public void onItemDelete(final int position) {
         final CityWeather cityWeather = cityWeatherList.get(position);
         cityWeatherList.remove(cityWeather);
         notifyItemRemoved(position);
 
+        //刪除成功後底下跳出提示欄，可按復原取消操作
         Snackbar.make(parentView,R.string.removeOK,Snackbar.LENGTH_LONG)
                 .setAction(R.string.undo, new View.OnClickListener() {
                     @Override
