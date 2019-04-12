@@ -7,10 +7,15 @@
     <string name="addCityInfo">新增你想要查看的城市天氣</string>
 
     <!--Toast-->
+    <string name="startAddCity">請加 + 鈕新增氣象卡片</string>
     <string name="addOK">新增成功</string>
     <string name="noInput">還沒輸入任何資料喔！</string>
     <string name="cityNotFound">沒有這個城市的資料喔</string>
     <string name="noResponse">伺服器無回應，請稍候再試</string>
+
+    <!--snackBar-->
+    <string name="removeOK">卡片已移除</string>
+    <string name="undo">復原</string>
 
     <!--氣象卡-->
     <string name="rightNow">現在：</string>

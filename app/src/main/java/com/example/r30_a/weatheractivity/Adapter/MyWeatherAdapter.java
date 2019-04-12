@@ -2,6 +2,7 @@ package com.example.r30_a.weatheractivity.Adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,14 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.r30_a.weatheractivity.Interface.OnswipeListener;
+import com.example.r30_a.weatheractivity.Interface.onSwipeListener;
 import com.example.r30_a.weatheractivity.R;
 import com.example.r30_a.weatheractivity.Utils.IconProvider;
 import com.example.r30_a.weatheractivity.WeatherData.CityWeather;
 
 import java.util.List;
 
-public class MyWeatherAdapter extends RecyclerView.Adapter<MyWeatherAdapter.MyViewHolder> implements OnswipeListener {
+public class MyWeatherAdapter extends RecyclerView.Adapter<MyWeatherAdapter.MyViewHolder> implements onSwipeListener {
 
     private List<CityWeather> cityWeatherList;
     private int layoutReference;
@@ -31,7 +32,6 @@ public class MyWeatherAdapter extends RecyclerView.Adapter<MyWeatherAdapter.MyVi
         this.activity = activity;
         this.onItemClickListener = onItemClickListener;
     }
-
 
     @NonNull
     @Override
@@ -48,7 +48,6 @@ public class MyWeatherAdapter extends RecyclerView.Adapter<MyWeatherAdapter.MyVi
         myViewHolder.bindView(cityWeatherList.get(pos),onItemClickListener);
     }
 
-
     @Override
     public int getItemCount() {
         return cityWeatherList.size();
@@ -60,12 +59,19 @@ public class MyWeatherAdapter extends RecyclerView.Adapter<MyWeatherAdapter.MyVi
     }
 
     @Override
-    public void onItemDelete(int position) {
-        CityWeather cityWeather = cityWeatherList.get(position);
+    public void onItemDelete(final int position) {
+        final CityWeather cityWeather = cityWeatherList.get(position);
         cityWeatherList.remove(cityWeather);
         notifyItemRemoved(position);
-    }
 
+        Snackbar.make(parentView,R.string.removeOK,Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addItem(position,cityWeather);
+                    }
+                }).show();
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -107,7 +113,7 @@ public class MyWeatherAdapter extends RecyclerView.Adapter<MyWeatherAdapter.MyVi
         }
 
     }
-    
+
     public interface OnItemClickListener {
         void onItemClick(CityWeather cityWeather, int position, View view);
     }

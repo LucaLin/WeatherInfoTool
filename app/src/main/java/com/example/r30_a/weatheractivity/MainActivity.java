@@ -12,19 +12,18 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.r30_a.weatheractivity.API.API;
 import com.example.r30_a.weatheractivity.API.WeatherService;
 import com.example.r30_a.weatheractivity.Adapter.MyWeatherAdapter;
+import com.example.r30_a.weatheractivity.Interface.onSwipeListener;
+import com.example.r30_a.weatheractivity.Utils.ItemTouchHelperCalback;
 import com.example.r30_a.weatheractivity.WeatherData.CityWeather;
 
 import java.util.ArrayList;
@@ -47,13 +46,17 @@ public class MainActivity extends AppCompatActivity {
     WeatherService service;
     Toast toast;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         initView();
+        toast.setText(R.string.startAddCity);toast.show();
+
+        ItemTouchHelper.Callback callback = new ItemTouchHelperCalback((onSwipeListener) adapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
     }
 
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                //設定浮動按鈕出現的時機
                 if(dy > 0){//往下捲
                     if(fabAddCity.isShown()){
                         fabAddCity.hide();
