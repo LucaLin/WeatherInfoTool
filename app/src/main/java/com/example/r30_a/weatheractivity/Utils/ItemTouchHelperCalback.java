@@ -17,7 +17,7 @@ public class ItemTouchHelperCalback extends ItemTouchHelper.Callback {
 
     @Override
     public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-
+        //設定滑動動作的flag
         int dragFlags = 0;
         int swipeFlags = 0;
         if(recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
@@ -34,6 +34,7 @@ public class ItemTouchHelperCalback extends ItemTouchHelper.Callback {
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+        //滑動後啟動listener做刪除卡片的動作
         onSwipeListener.onItemDelete(viewHolder.getAdapterPosition());
     }
 }

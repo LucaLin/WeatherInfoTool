@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     app:cardCornerRadius="20dp"
     android:transitionName="weatherCardTransition">
-
+    <!--這裡加上transitionName，就可指定補間動畫的位置-->
 
     <RelativeLayout
         android:layout_width="wrap_content"

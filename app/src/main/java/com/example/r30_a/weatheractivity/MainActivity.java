@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     WeatherService service;
     Toast toast;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         initView();
         toast.setText(R.string.startAddCity);toast.show();
-
+        //使氣象卡片可以滑動刪除的設定
         ItemTouchHelper.Callback callback = new ItemTouchHelperCalback((onSwipeListener) adapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(CityWeather cityWeather, int position, View view) {
                 //點擊進入細節頁面
                 Intent intent = new Intent(MainActivity.this,WeatherDetailActivity.class);
+                //設定轉場動畫
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
                         MainActivity.this,view,
                         "weatherCardTransition");
@@ -182,8 +184,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         builder.create().show();
-
-
     }
     //加入氣象卡片
     public void addCity(String cityname) {

@@ -50,7 +50,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
             setCardData();
         }
     }
-
+        //設定卡片資訊
     private void setCardData() {
         txvCard_cityName.setText(cityWeather.getCity().getName() + ", " + cityWeather.getCity().getCountry());
         txvCard_description.setText(cityWeather.getWeatherData().get(0).getWeatherDetails().get(0).getLongDescription());
@@ -73,8 +73,8 @@ public class WeatherDetailActivity extends AppCompatActivity {
             calendar.setTime(date);
             String day = namesOfDays[(calendar.get(Calendar.DAY_OF_WEEK) + i) % 7];
 
-            switch (i) {
-                case 0:
+            switch (i) {//cityWeather內已有六天資料，利用index篩選天數放入指定位置
+                case 0://首日已顯示，所以從第二天開始
                     break;
                 case 1:
                     setDailyInfo(1,txvDay1,day,img_icon1,txvMaxTemp1,txvMinTemp1);
@@ -95,7 +95,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
         }
 
     }
-
+    //設定周間氣象資訊
     public void setDailyInfo(int index, TextView txvday, String day, ImageView imgIcon, TextView txvMaxTemp, TextView txvMinTemp){
         txvday.setText(day);
         String weeklyDescription = cityWeather.getWeatherData().get(index).getWeatherDetails().get(0).getShortDescription();

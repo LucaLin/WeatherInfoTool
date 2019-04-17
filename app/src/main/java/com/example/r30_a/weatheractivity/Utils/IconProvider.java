@@ -3,7 +3,7 @@ package com.example.r30_a.weatheractivity.Utils;
 import com.example.r30_a.weatheractivity.R;
 
 public class IconProvider {
-
+    //根據回傳回來的shortDescription更換對應的天氣圖片
     public static int getImageIcon(String weatherDescription){
         int weatherIcon ;
         switch(weatherDescription) {
